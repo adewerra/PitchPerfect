@@ -12,7 +12,7 @@ import UIKit
 import AVFoundation
 
 
-class SoundHandlingObject: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
+class SoundHandlingObject: NSObject, AVAudioRecorderDelegate {
     var recorder: AVAudioRecorder!
     var player: AVAudioPlayer!
     var soundFileURL: NSURL!
@@ -75,7 +75,6 @@ class SoundHandlingObject: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDeleg
         
         player = AVAudioPlayer(contentsOfURL: soundFileURL, error: &error)
         player.enableRate = true
-        player.delegate = self
 
         audioEngine = AVAudioEngine()
         audioFile = AVAudioFile(forReading: soundFileURL, error: &error)
@@ -190,7 +189,6 @@ class SoundHandlingObject: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDeleg
         
         if(audioEngine != nil) {
             audioEngine.stop()
-            //audioEngine.reset()
         }
 
     }
@@ -221,39 +219,8 @@ class SoundHandlingObject: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDeleg
         
             // create the player after finishing recording
             createPlayer()
-        
-            // ios8 and later
-            var alert = UIAlertController(title: "Recorder",
-                message: "Finished Recording",
-                preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "Keep", style: .Default, handler: {action in
-                println("keep was tapped")
-            }))
-            alert.addAction(UIAlertAction(title: "Delete", style: .Default, handler: {action in
-                self.recorder!.deleteRecording()
-            }))
-        
     }
 
-
-    //----------------------------------------------------
-    // audioPlayerDidFinishPlaying
-    // extension SoundHandlingObject : AVAudioRecorderDelegate {
-    
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer!, successfully flag: Bool) {
-        // ios8 and later
-        var alert = UIAlertController(title: "Recorder",
-            message: "Finished Recording",
-            preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Keep", style: .Default, handler: {action in
-            println("keep was tapped")
-        }))
-        alert.addAction(UIAlertAction(title: "Delete", style: .Default, handler: {action in
-            self.recorder!.deleteRecording()
-        }))
-    }
-    
-    
     
     //----------------------------------------------------
     // audioRecorderEncodeErrorDidOccur

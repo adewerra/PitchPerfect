@@ -28,23 +28,6 @@ class PlaySoundViewController: UIViewController {
         soundManager = nil  // set the object to nil for destruction
     }
     
-    
-    //------------------------------------------------------------
-    // setSoundManager
-    
-    //  sets the instance variable soundManager to the parent view by getting the 
-    //  first view from the navigation controller
-    /*func setSoundManager() {
-        var mainViewController:RecordSoundViewController
-        var navController:UINavigationController?
-        //let firstVC = navigationController.viewControllers[0] as! NameOfFirstViewController
-        // set whatever properties you might want to set
-        navController = self.parentViewController as! UINavigationController
-        mainViewController = navController!.viewControllers[0] as! RecordSoundViewController
-        soundManager = mainViewController?.soundManager
-    }*/
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -95,14 +78,6 @@ class PlaySoundViewController: UIViewController {
         
         
     }
-/*
-    // MARK: - Navigation
 
-        // In a storyboard-based application, you will often want to do a little preparation before navigation
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    
-    }
-    */
 
 }
